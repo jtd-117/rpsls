@@ -12,7 +12,7 @@
 const moves = Object.freeze({
     Rock: "rock",
     Paper: "paper",
-    Scizzor: "scizzor",
+    Scizzor: "scissor",
     Lizard: "lizard",
     Spock: "spock"
 })
