@@ -182,3 +182,13 @@ function determineOutcome(humanMove, computerMove) {
     return gameResult.Draw;
 }
 /* -------------------------------------------------------------------------- */
+/**
+ * @description Disables all HTML buttons.
+ * @link        https://github.com/benfowler04/rock-paper-scissors/blob/master/rps.js
+ */
+function disableButtons() {
+    buttons.forEach(button => {
+        button.disabled = true
+    });
+}
+/* -------------------------------------------------------------------------- */
