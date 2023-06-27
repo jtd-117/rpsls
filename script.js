@@ -6,7 +6,7 @@
  */
 /* -------------------------------------------------------------------------- */
 /**
- * @description An ENUM for the moves the player & computer can play.
+ * @description An ENUM for the moves the human & computer can play.
  */
 
 const moves = Object.freeze({
@@ -34,7 +34,7 @@ const gameResult = Object.freeze({
 function getComputerMove() {
 
     // STEP 1: Select the computer's `choice` div
-    const computerMove = document.querySelector(`div[id="computer"] div[id="choice"]`);
+    const computerMove = document.querySelector(`div[id="computer"] div[class="choice"]`);
 
     // STEP 2: Randomly select an integer
     let result = Math.floor(Math.random() * 5);
@@ -75,29 +75,29 @@ function getComputerMove() {
 function getHumanMove(e) {
 
     // STEP 1: Select the human's `choice` div
-    const humanMove = document.querySelector(`div[id="human"] div[id="choice"]`);
+    const humanMove = document.querySelector(`div[id="human"] div[class="choice"]`);
 
-    // CASE 2A: Player clicked ROCK
+    // CASE 2A: Human clicked ROCK
     if (e.target.id === moves.Rock) {
         humanMove.textContent = '✊';
         return moves.Rock;
 
-    // CASE 2B: Player clicked PAPER
+    // CASE 2B: Human clicked PAPER
     } else if (e.target.id === moves.Paper) {
         humanMove.textContent = '🤚';
         return moves.Paper;
 
-    // CASE 2C: Player clicked scissor
+    // CASE 2C: Human clicked scissor
     } else if (e.target.id === moves.Scissor) {
         humanMove.textContent = '✌️';
         return moves.Scissor;
 
-    // CASE 2D: Player clicked LIZARD
+    // CASE 2D: Human clicked LIZARD
     } else if (e.target.id === moves.Lizard) {
         humanMove.textContent = '🤏';
         return moves.Lizard;
 
-    // CASE 2E: Player clicked SPOCK
+    // CASE 2E: Human clicked SPOCK
     } else if (e.target.id === moves.Spock) {
         humanMove.textContent = '🖖';
         return moves.Spock;
@@ -112,7 +112,7 @@ function getHumanMove(e) {
  */
 function determineOutcome(humanMove, computerMove) {
 
-    // CASE A: Player selcted ROCK
+    // CASE A: Human selcted ROCK
     if (humanMove === moves.Rock) {
 
         // CASE AI: Rock WINS against scissor & lizard
@@ -125,7 +125,7 @@ function determineOutcome(humanMove, computerMove) {
             (computerMove === moves.Spock)) {
             return gameResult.Lose;
         }
-    // CASE B: Player selected PAPER
+    // CASE B: Human selected PAPER
     } else if (humanMove === moves.Paper) {
 
         // CASE BI: Paper WINS against rock & spock
@@ -138,7 +138,7 @@ function determineOutcome(humanMove, computerMove) {
             (computerMove === moves.Lizard)) {
             return gameResult.Lose;
         }
-    // CASE C: PLayer selcted SCISSOR    
+    // CASE C: Human selcted SCISSOR    
     } else if (humanMove === moves.Scissor) {
 
         // CASE CI: Scissor WINS against paper & lizard
@@ -151,7 +151,7 @@ function determineOutcome(humanMove, computerMove) {
             (computerMove === moves.Spock)) {
             return gameResult.Lose;
         }
-    // CASE D: Player selected LIZARD
+    // CASE D: Human selected LIZARD
     } else if (humanMove === moves.Lizard) {
 
         // CASE DI: Lizard WINS against paper & spock
@@ -164,7 +164,7 @@ function determineOutcome(humanMove, computerMove) {
             (computerMove === moves.Rock)) {
             return gameResult.Lose;
         }
-    // CASE E: Player selected SPOCK
+    // CASE E: Human selected SPOCK
     } else {
 
         // CASE EI: Spock WINS against rock & scissor
@@ -214,3 +214,65 @@ function playAudio(id) {
     audio.play();
 }
 /* -------------------------------------------------------------------------- */
+/**
+ * @description Plays a single round of RPSLS.
+ * @param       {object} e An object reference to the `click` button
+ */
+function playRPSLS(e) {
+
+    // STEP 1: Play the button click sound
+    playAudio("click-mp3");
+
+    // STEP 2: Initialise the variables
+    let humanMove = null;
+    const humanScoreDiv = document.querySelector(`div[id="human"] div[class="score"]`);
+    let computerMove = null;
+    const computerScoreDiv = document.querySelector(`div[id="computer"] div[class="score"]`);
+    let result = NaN;
+    let bestTo = 5;
+    const reasonDiv = document.getElementById('reason');
+
+    // STEP 3: Adjust the `outcome` container
+    if ((humanScore === 0) && (computerScore === 0)) {
+        const resultDiv = document.getElementById('result');
+        resultDiv.textContent = 'Outcome:';
+    }
+
+    // STEP : Human rounds & keep track of the score
+    if ((humanScore < bestTo) && (computerScore < bestTo)) {
+
+        // STEP : Extract `humanMove` & `computerMove`
+        humanMove = getHumanMove(e);
+        computerMove = getComputerMove();
+
+        // STEP : Determine the outcome
+        result = determineOutcome(humanMove, computerMove);
+
+        // CASE A: The human LOST
+        if (result === gameResult.Lose) {
+            computerScore++;
+            computerScoreDiv.textContent = `Computer: ${computerScore}`;
+            reasonDiv.textContent = `${computerMove} beats ${humanMove}`;
+
+
+        // CASE B: The human WON
+        } else if (result === gameResult.Win) {
+            humanScore++;
+            humanScoreDiv.textContent = `Human: ${humanScore}`;
+            reasonDiv.textContent = `${humanMove} beats ${computerMove}`;
+
+        // CASE C: Human & computer TIED
+        } else {
+            reasonDiv.textContent = `${humanMove} ties with ${computerMove}`;
+        }
+    }
+}
+/* -------------------------------------------------------------------------- */
+
+// STEP 1: Get all buttons
+const buttons = Array.from(document.querySelectorAll('button'));
+
+// STEP 2: Add an event listener to each button & play the game
+let humanScore = 0;
+let computerScore = 0;
+buttons.forEach(button => button.addEventListener('click', playRPSLS));
