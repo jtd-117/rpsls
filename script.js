@@ -1,5 +1,5 @@
 /**
- * @file            Implements the logic for the 'Rock, Paper, Scizzor, 
+ * @file            Implements the logic for the 'Rock, Paper, Scissor, 
  *                  Lizard, Spock' game.
  * @author          Jude Thaddeau Data
  * @link            https://github.com/jtd-117
@@ -12,10 +12,10 @@
 const moves = Object.freeze({
     Rock: "rock",
     Paper: "paper",
-    Scizzor: "scissor",
+    Scissor: "scissor",
     Lizard: "lizard",
     Spock: "spock"
-})
+});
 /* -------------------------------------------------------------------------- */
 /**
  * @description An ENUM for keeping track of victories, losses & draws.
@@ -24,7 +24,7 @@ const gameResult = Object.freeze({
     Lose: -1,
     Draw: 0,
     Win: 1
-})
+});
 /* -------------------------------------------------------------------------- */
 /**
  * @description Randomly generates an INTEGER that represents the computer's
@@ -49,10 +49,10 @@ function getComputerMove() {
         computerMove.textContent = '🤚';
         return moves.Paper;
 
-    // CASE 3C: Randomly selected SCIZZOR
+    // CASE 3C: Randomly selected SCISSOR
     } else if (result === 2) {
         computerMove.textContent = '✌️';
-        return moves.Scizzor;
+        return moves.Scissor;
 
     // CASE 3D: Randomly selected LIZARD
     } else if (result === 3) {
@@ -87,10 +87,10 @@ function getHumanMove(e) {
         humanMove.textContent = '🤚';
         return moves.Paper;
 
-    // CASE 2C: Player clicked SCIZZOR
-    } else if (e.target.id === moves.Scizzor) {
+    // CASE 2C: Player clicked scissor
+    } else if (e.target.id === moves.Scissor) {
         humanMove.textContent = '✌️';
-        return moves.Scizzor;
+        return moves.Scissor;
 
     // CASE 2D: Player clicked LIZARD
     } else if (e.target.id === moves.Lizard) {
@@ -102,5 +102,83 @@ function getHumanMove(e) {
         humanMove.textContent = '🖖';
         return moves.Spock;
     }
+}
+/* -------------------------------------------------------------------------- */
+/**
+ * @description Calculates & displays the outcome of the RPSLS round.
+ * @param       {object} humanMove     
+ * @param       {object} computerMove   
+ * @returns     {number} An enumeration from `gameResult`
+ */
+function determineOutcome(humanMove, computerMove) {
+
+    // CASE A: Player selcted ROCK
+    if (humanMove === moves.Rock) {
+
+        // CASE AI: Rock WINS against scissor & lizard
+        if ((computerMove === moves.Scissor) || 
+            (computerMove === moves.Lizard)) {
+            return gameResult.Win;
+
+        // CASE AII: Rock LOSES against paper & spock
+        } else if ((computerMove == moves.Paper) || 
+            (computerMove === moves.Spock)) {
+            return gameResult.Lose;
+        }
+    // CASE B: Player selected PAPER
+    } else if (humanMove === moves.Paper) {
+
+        // CASE BI: Paper WINS against rock & spock
+        if ((computerMove === moves.Rock) || 
+            (computerMove === moves.Spock)) {
+            return gameResult.Win;
+
+        // CASE BII: Paper LOSES against scissor & lizard
+        } else if ((computerMove === moves.Scissor) || 
+            (computerMove === moves.Lizard)) {
+            return gameResult.Lose;
+        }
+    // CASE C: PLayer selcted SCISSOR    
+    } else if (humanMove === moves.Scissor) {
+
+        // CASE CI: Scissor WINS against paper & lizard
+        if ((computerMove === moves.Paper) || 
+            (computerMove === moves.Lizard)) {
+            return gameResult.Win;
+
+        // CASE CII: Scissor LOSES against rock & spock
+        } else if ((computerMove == moves.Rock) || 
+            (computerMove === moves.Spock)) {
+            return gameResult.Lose;
+        }
+    // CASE D: Player selected LIZARD
+    } else if (humanMove === moves.Lizard) {
+
+        // CASE DI: Lizard WINS against paper & spock
+        if ((computerMove === moves.Paper) || 
+            (computerMove === moves.Spock)) {
+            return gameResult.Win;
+
+        // CASE DII: Lizard LOSES against scissor & rock
+        } else if ((computerMove === moves.Scissor) || 
+            (computerMove === moves.Rock)) {
+            return gameResult.Lose;
+        }
+    // CASE E: Player selected SPOCK
+    } else {
+
+        // CASE EI: Spock WINS against rock & scissor
+        if ((computerMove == moves.Rock) || 
+            (computerMove === moves.Scissor)) {
+            return gameResult.Win;
+        
+        // CASE EII: Spock LOSES against paper & lizard
+        } else if ((computerMove === moves.Paper) || 
+            (computerMove === moves.Lizard)) {
+            return gameResult.Lose;
+        }
+    }
+    // CASE F: `humanMove` & `computerMove` resulted in a DRAW
+    return gameResult.Draw;
 }
 /* -------------------------------------------------------------------------- */
