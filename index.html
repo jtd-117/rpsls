@@ -9,6 +9,47 @@
     <title>RPSLS</title>
 </head>
 <body>
-    
+
+    <!-- PART 1: Title Of The Website --> 
+    <header>
+        <h1>ROCK - PAPER - SCISSOR - LIZARD - SPOCK</h1>
+    </header>
+
+    <!-- PART 2: Track the Human & Computer Scores --> 
+    <section id="game-board">
+        <div id="human-board">
+            <div class="score">Human: 0</div>
+            <div class="move-choice">👨‍💻</div>
+        </div>
+        <div id="computer-board">
+            <div class="score">Computer: 0</div>
+            <div class="move-choice">🤖</div>
+        </div>
+    </section>
+
+    <!-- PART 3: Display The Outcome Of The Round --> 
+    <section id="outcome">
+        <div id="result">First to 5 wins!</div>
+        <div id="reason">Select a move:</div>
+    </section>
+
+    <!-- PART 4: The Selection Of RPSLS Moves Offered To The Player --> 
+    <section id="move-select">
+        <button id="rock" title="rock">✊</button>
+        <button id="paper" title="paper">🤚</button>
+        <button id="scissor" title="scissor">✌️</button>
+        <button id="lizard" title="lizard">🤏</button>
+        <button id="spock" title="spock">🖖</button>
+    </section>
+
+    <!-- PART 5: In-Game Audio -->
+    <audio id="click-mp3" src=""></audio>
+    <audio id="win-mp3" src=""></audio>
+    <audio id="lose-mp3" src=""></audio>
+
+    <!-- PART 6: Footer Acknowledgements --> 
+    <footer>
+        <h2>Coded by <a href="https://github.com/jtd-117">jtd-117</a></h2>
+    </footer>
 </body>
 </html>
