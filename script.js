@@ -200,3 +200,17 @@ function refreshPage() {
     location.reload();
 }
 /* -------------------------------------------------------------------------- */
+/**
+ * @description Plays the audio stored in the HTML tag with `id`.
+ * @param       {string} id The HTML tag that contains the audio
+ */
+function playAudio(id) {
+
+    // STEP 1: Locate the audio in the DOM
+    const audio = document.getElementById(id);
+
+    // STEP 2: Execute the media if it exists
+    if (!audio) return;
+    audio.play();
+}
+/* -------------------------------------------------------------------------- */
