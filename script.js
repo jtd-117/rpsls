@@ -17,3 +17,12 @@ const moves = Object.freeze({
     Spock: "spock"
 })
 /* -------------------------------------------------------------------------- */
+/**
+ * @description An ENUM for keeping track of victories, losses & draws.
+ */
+const gameResult = Object.freeze({
+    Lose: -1,
+    Draw: 0,
+    Win: 1
+})
+/* -------------------------------------------------------------------------- */
