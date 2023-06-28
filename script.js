@@ -284,6 +284,41 @@ function playAudio(id) {
 }
 /* -------------------------------------------------------------------------- */
 /**
+ * @description Adds HTML tags to allow players to replay the game.
+ */
+function playAgainPrompt() {
+
+    // STEP 1: Create 'aside' container with `h1` & `button` elements
+    const replay = document.createElement('aside');
+    replay.setAttribute('id', 'replay');
+    const replayPrompt = document.createElement('h1');
+    replayPrompt.setAttribute('id', 'replayPrompt');
+    const replayButton = document.createElement('button');
+    replayButton.setAttribute('id', 'replayButton');
+
+    // STEP 3: Style `h1` container & play victory/loss music sting
+    if (humanScore === bestTo) {
+        playAudio('win-mp3');
+        replayPrompt.textContent = "YOU WIN!";
+    } else {
+        playAudio('lose-mp3');
+        replayPrompt.textContent = "YOU LOSE!";
+    }
+    // STEP 4: Style the `button` container
+    replayButton.textContent = "Play Again";
+    replay.addEventListener('click', refreshPage);
+
+    // STEP 5: Add `h1` & `button` to `replay`
+    replay.appendChild(replayPrompt);
+    replay.appendChild(replayButton);
+
+    // STEP 6: Add `replay` to the end of `body`
+    const body = document.querySelector('body');
+    body.appendChild(replay)
+}
+
+/* -------------------------------------------------------------------------- */
+/**
  * @description Plays a single round of RPSLS.
  * @param       {object} e An object reference to the `click` button
  */
@@ -292,63 +327,56 @@ function playRPSLS(e) {
     // STEP 1: Play the button click sound
     playAudio("click-mp3");
 
-    // STEP 2: Initialise the variables
-    let humanMove = null;
-    const humanScoreDiv = document.querySelector(`div[id="human"] div[class="score"]`);
-    let computerMove = null;
-    const computerScoreDiv = document.querySelector(`div[id="computer"] div[class="score"]`);
-    let result = NaN;
-    let bestTo = 5;
-
-    // STEP 3: Adjust the `outcome` container
+    // STEP 2: Adjust the `outcome` container
     if ((humanScore === 0) && (computerScore === 0)) {
         const resultDiv = document.getElementById('result');
         resultDiv.textContent = 'Outcome:';
     }
-
-    // STEP 4: Human rounds & keep track of the score
+    // STEP 3: Human rounds & keep track of the score
     if ((humanScore < bestTo) && (computerScore < bestTo)) {
 
-        // STEP 5: Extract `humanMove` & `computerMove`
+        // STEP 4: Extract `humanMove` & `computerMove`
         humanMove = getHumanMove(e);
         computerMove = getComputerMove();
 
-        // STEP 6: Determine the outcome
+        // STEP 5: Determine the outcome
         result = determineOutcome(humanMove, computerMove);
 
-        // CASE 7A: The human LOST
+        // CASE 6A: The human LOST
         if (result === gameResult.Lose) {
             computerScore++;
             computerScoreDiv.textContent = `Computer: ${computerScore}`;
 
-        // CASE 7B: The human WON
+        // CASE 6B: The human WON
         } else if (result === gameResult.Win) {
             humanScore++;
             humanScoreDiv.textContent = `Human: ${humanScore}`;
         }
-        // STEP 8: Conclude game when max score has been reached
+        // STEP 7: Conclude game when max score has been reached
         if ((humanScore === bestTo) || (computerScore === bestTo)) {
 
-            // STEP 9: Disable buttons
+            // STEP 8: Disable buttons
             disableButtons();
 
-            // CASE 10A: The human WINS
-            if (humanScore === bestTo) {
-                playAudio('win-mp3');
-            
-            // CASE 10B: The computer WINS
-            } else {
-                playAudio('lose-mp3');
-            }
+            // STEP 9: Provide a mechanism to replay the game
+            playAgainPrompt();
         }
     }
 }
 /* -------------------------------------------------------------------------- */
 
-// STEP 1: Get all buttons
+// STEP 1: Define variables
+let humanMove = null;
+const humanScoreDiv = document.querySelector(`div[id="human"] div[class="score"]`);
+let computerMove = null;
+const computerScoreDiv = document.querySelector(`div[id="computer"] div[class="score"]`);
+let result = NaN;
+let bestTo = 5;
+
+// STEP 2: Get all buttons
 const buttons = Array.from(document.querySelectorAll('button'));
 
-// STEP 2: Add an event listener to each button & play the game
+// STEP 3: Add an event listener to each button & play the game
 let humanScore = 0;
 let computerScore = 0;
 buttons.forEach(button => button.addEventListener('click', playRPSLS));
