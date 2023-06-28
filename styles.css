@@ -9,6 +9,12 @@ body {
     background-color: lightgray;
 }
 
+header, 
+footer {
+    color: white;
+    background-color: grey;
+}
+
 #scoreboard, 
 #outcome, 
 #select {
@@ -71,6 +77,14 @@ header h1 {
 
 #outcome div {
     margin: 10px;
+}
+
+#outcome #result {
+    font-size: xx-large;
+}
+
+#outcome #reason {
+    font-size: x-large;
 }
 
 /* -------------------------------------------------------------------------- */
