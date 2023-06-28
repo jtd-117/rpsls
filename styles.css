@@ -1,0 +1,64 @@
+/* Default Styles */
+
+body {
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+#scoreboard, 
+#outcome, 
+#select {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Header & Title */
+
+header h1 {
+    max-width: 100%;
+    margin: 0;
+    padding: 20px;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Human & Computer Scoreboard */
+#scoreboard {
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#scoreboard #human, 
+#scoreboard #computer,
+#scoreboard .score, 
+#scoreboard .choice  {
+    padding: inherit;
+}
+
+#scoreboard .score {
+    font-size: xx-large;
+}
+
+#scoreboard .choice {
+    font-size: 100px;
+    margin-inline: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Round Outcome */
+
+/* -------------------------------------------------------------------------- */
+
+/* Move Selection */
+
+/* -------------------------------------------------------------------------- */
+
+/* Footer & Acknowledgements */
