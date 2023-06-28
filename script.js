@@ -112,17 +112,29 @@ function getHumanMove(e) {
  */
 function determineOutcome(humanMove, computerMove) {
 
+    // STEP 1: Get the `reason div`
+    const reasonDiv = document.getElementById('reason');
+
     // CASE A: Human selcted ROCK
     if (humanMove === moves.Rock) {
 
         // CASE AI: Rock WINS against scissor & lizard
         if ((computerMove === moves.Scissor) || 
             (computerMove === moves.Lizard)) {
+            reasonDiv.textContent = 
+                `${humanMove} crushes ${computerMove}`;
             return gameResult.Win;
 
         // CASE AII: Rock LOSES against paper & spock
         } else if ((computerMove == moves.Paper) || 
             (computerMove === moves.Spock)) {
+            if (computerMove === moves.Paper) {
+                reasonDiv.textContent = 
+                    `${computerMove} covers ${humanMove}`;
+            } else {
+                reasonDiv.textContent = 
+                    `${computerMove} vaporises ${humanMove}`;
+            }
             return gameResult.Lose;
         }
     // CASE B: Human selected PAPER
@@ -131,11 +143,25 @@ function determineOutcome(humanMove, computerMove) {
         // CASE BI: Paper WINS against rock & spock
         if ((computerMove === moves.Rock) || 
             (computerMove === moves.Spock)) {
+            if (computerMove === moves.Rock) {
+                reasonDiv.textContent = 
+                    `${humanMove} covers ${computerMove}`;
+            } else {
+                reasonDiv.textContent = 
+                    `${humanMove} disproves ${computerMove}`;
+            }
             return gameResult.Win;
 
         // CASE BII: Paper LOSES against scissor & lizard
         } else if ((computerMove === moves.Scissor) || 
             (computerMove === moves.Lizard)) {
+            if (computerMove === moves.Scissor) {
+                reasonDiv.textContent = 
+                    `${computerMove} covers ${humanMove}`;
+            } else {
+                reasonDiv.textContent = 
+                    `${computerMove} eats ${humanMove}`;
+            }
             return gameResult.Lose;
         }
     // CASE C: Human selcted SCISSOR    
@@ -144,11 +170,25 @@ function determineOutcome(humanMove, computerMove) {
         // CASE CI: Scissor WINS against paper & lizard
         if ((computerMove === moves.Paper) || 
             (computerMove === moves.Lizard)) {
+            if (computerMove === moves.Paper) {
+                reasonDiv.textContent = 
+                    `${humanMove} eats ${computerMove}`;
+            } else {
+                reasonDiv.textContent = 
+                    `${humanMove} decapitates ${computerMove}`;
+            }
             return gameResult.Win;
 
         // CASE CII: Scissor LOSES against rock & spock
         } else if ((computerMove == moves.Rock) || 
             (computerMove === moves.Spock)) {
+            if (computerMove === moves.Rock) {
+                reasonDiv.textContent = 
+                    `${computerMove} crushes ${humanMove}`;
+            } else {
+                reasonDiv.textContent = 
+                    `${computerMove} smashes ${humanMove}`;
+            }
             return gameResult.Lose;
         }
     // CASE D: Human selected LIZARD
@@ -157,11 +197,25 @@ function determineOutcome(humanMove, computerMove) {
         // CASE DI: Lizard WINS against paper & spock
         if ((computerMove === moves.Paper) || 
             (computerMove === moves.Spock)) {
+            if (computerMove === moves.Paper) {
+                reasonDiv.textContent = 
+                    `${humanMove} eats ${computerMove}`;
+            } else {
+                reasonDiv.textContent = 
+                    `${humanMove} poisons ${computerMove}`;
+            }
             return gameResult.Win;
 
         // CASE DII: Lizard LOSES against scissor & rock
         } else if ((computerMove === moves.Scissor) || 
             (computerMove === moves.Rock)) {
+            if (computerMove === moves.Scissor) {
+                reasonDiv.textContent = 
+                    `${computerMove} decapitates ${humanMove}`;
+            } else {
+                reasonDiv.textContent = 
+                    `${computerMove} smashes ${humanMove}`;
+            }
             return gameResult.Lose;
         }
     // CASE E: Human selected SPOCK
@@ -170,15 +224,30 @@ function determineOutcome(humanMove, computerMove) {
         // CASE EI: Spock WINS against rock & scissor
         if ((computerMove == moves.Rock) || 
             (computerMove === moves.Scissor)) {
+            if (computerMove === moves.Rock) {
+                reasonDiv.textContent = 
+                    `${humanMove} vaporises ${computerMove}`;
+            } else {
+                reasonDiv.textContent = 
+                    `${humanMove} smashes ${computerMove}`;
+            }
             return gameResult.Win;
         
         // CASE EII: Spock LOSES against paper & lizard
         } else if ((computerMove === moves.Paper) || 
             (computerMove === moves.Lizard)) {
+            if (computerMove === moves.Paper) {
+                reasonDiv.textContent = 
+                    `${computerMove} disproves ${humanMove}`;
+            } else {
+                reasonDiv.textContent = 
+                `${computerMove} poisons ${humanMove}`;
+            }
             return gameResult.Lose;
         }
     }
     // CASE F: `humanMove` & `computerMove` resulted in a DRAW
+    reasonDiv.textContent = `${humanMove} ties with ${computerMove}`;
     return gameResult.Draw;
 }
 /* -------------------------------------------------------------------------- */
@@ -230,7 +299,6 @@ function playRPSLS(e) {
     const computerScoreDiv = document.querySelector(`div[id="computer"] div[class="score"]`);
     let result = NaN;
     let bestTo = 5;
-    const reasonDiv = document.getElementById('reason');
 
     // STEP 3: Adjust the `outcome` container
     if ((humanScore === 0) && (computerScore === 0)) {
@@ -238,32 +306,40 @@ function playRPSLS(e) {
         resultDiv.textContent = 'Outcome:';
     }
 
-    // STEP : Human rounds & keep track of the score
+    // STEP 4: Human rounds & keep track of the score
     if ((humanScore < bestTo) && (computerScore < bestTo)) {
 
-        // STEP : Extract `humanMove` & `computerMove`
+        // STEP 5: Extract `humanMove` & `computerMove`
         humanMove = getHumanMove(e);
         computerMove = getComputerMove();
 
-        // STEP : Determine the outcome
+        // STEP 6: Determine the outcome
         result = determineOutcome(humanMove, computerMove);
 
-        // CASE A: The human LOST
+        // CASE 7A: The human LOST
         if (result === gameResult.Lose) {
             computerScore++;
             computerScoreDiv.textContent = `Computer: ${computerScore}`;
-            reasonDiv.textContent = `${computerMove} beats ${humanMove}`;
 
-
-        // CASE B: The human WON
+        // CASE 7B: The human WON
         } else if (result === gameResult.Win) {
             humanScore++;
             humanScoreDiv.textContent = `Human: ${humanScore}`;
-            reasonDiv.textContent = `${humanMove} beats ${computerMove}`;
+        }
+        // STEP 8: Conclude game when max score has been reached
+        if ((humanScore === bestTo) || (computerScore === bestTo)) {
 
-        // CASE C: Human & computer TIED
-        } else {
-            reasonDiv.textContent = `${humanMove} ties with ${computerMove}`;
+            // STEP 9: Disable buttons
+            disableButtons();
+
+            // CASE 10A: The human WINS
+            if (humanScore === bestTo) {
+                playAudio('win-mp3');
+            
+            // CASE 10B: The computer WINS
+            } else {
+                playAudio('lose-mp3');
+            }
         }
     }
 }
