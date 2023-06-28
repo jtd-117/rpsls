@@ -5,6 +5,8 @@ body {
     margin: 0;
     overflow-x: hidden;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightgray;
 }
 
 #scoreboard, 
@@ -13,22 +15,8 @@ body {
     padding: 10px;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-}
-
-header,
-#outcome,  
-footer {
-    block-size: 10vh;
-}
-
-#scoreboard {
-    block-size: 30vh;
-}
-
-#select {
-    block-size: 30vh;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -50,6 +38,15 @@ header h1 {
 #scoreboard .score, 
 #scoreboard .choice  {
     padding: inherit;
+}
+
+#scoreboard #human, 
+#scoreboard #computer {
+    inline-size: 200px;
+    block-size: 200px;
+    margin-inline: 20px;
+    border: 2px solid black;
+    border-radius: 20%;
 }
 
 #scoreboard .score {
@@ -82,12 +79,17 @@ header h1 {
 /* Move Selection */
 
 #select button {
-    padding: 5px;
-    margin: 10px;
     inline-size: 150px;
     block-size: 150px;
-    border-radius: 20%;
+    padding: 5px;
+    margin: 10px;
     font-size: 100px;
+    border-radius: 20%;
+    border-block-end: 10px solid black;
+}
+
+#select button:active {
+    border-block-end: 0;
 }
 
 /* -------------------------------------------------------------------------- */
