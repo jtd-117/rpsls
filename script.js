@@ -41,27 +41,27 @@ function getComputerMove() {
 
     // CASE 3A: Randomly selected ROCK
     if (result === 0) {
-        computerMove.textContent = '🪨';
+        computerMove.textContent = '✊';
         return moves.Rock;
 
     // CASE 3B: Randomly selcted PAPER
     } else if (result === 1) {
-        computerMove.textContent = '🧻';
+        computerMove.textContent = '🤚';
         return moves.Paper;
 
     // CASE 3C: Randomly selected SCISSOR
     } else if (result === 2) {
-        computerMove.textContent = '✂️';
+        computerMove.textContent = '✌️';
         return moves.Scissor;
 
     // CASE 3D: Randomly selected LIZARD
     } else if (result === 3) {
-        computerMove.textContent = '🦎';
+        computerMove.textContent = '🤏';
         return moves.Lizard;
     
     // CASE 3E: Randomly selected SPOCK
     } else {
-        computerMove.textContent = '🖖🏼';
+        computerMove.textContent = '🖖';
         return moves.Spock;
     }
 }
@@ -79,27 +79,27 @@ function getHumanMove(e) {
 
     // CASE 2A: Human clicked ROCK
     if (e.target.id === moves.Rock) {
-        humanMove.textContent = '🪨';
+        humanMove.textContent = '✊';
         return moves.Rock;
 
     // CASE 2B: Human clicked PAPER
     } else if (e.target.id === moves.Paper) {
-        humanMove.textContent = '🧻';
+        humanMove.textContent = '🤚';
         return moves.Paper;
 
     // CASE 2C: Human clicked scissor
     } else if (e.target.id === moves.Scissor) {
-        humanMove.textContent = '✂️';
+        humanMove.textContent = '✌️';
         return moves.Scissor;
 
     // CASE 2D: Human clicked LIZARD
     } else if (e.target.id === moves.Lizard) {
-        humanMove.textContent = '🦎';
+        humanMove.textContent = '🤏';
         return moves.Lizard;
 
     // CASE 2E: Human clicked SPOCK
     } else if (e.target.id === moves.Spock) {
-        humanMove.textContent = '🖖🏼';
+        humanMove.textContent = '🖖';
         return moves.Spock;
     }
 }
