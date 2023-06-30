@@ -1,3 +1,12 @@
+/* Fonts */
+
+@font-face {
+    font-family: "comfortaa";
+    src: url("Comfortaa/Comfortaa-VariableFont_wght.ttf");
+}
+
+/* -------------------------------------------------------------------------- */
+
 /* Default Styles */
 
 html, body {
@@ -5,7 +14,7 @@ html, body {
     margin: 0;
     overflow-x: hidden;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "comfortaa", sans-serif;
     background-color: lightgray;
     display: flex;
     flex-direction: column;
@@ -56,6 +65,7 @@ header h1 {
     margin-inline: 20px;
     border: 2px solid black;
     border-radius: 20%;
+    background-color: white;
 }
 
 .score {
@@ -103,6 +113,7 @@ header h1 {
     font-size: 100px;
     border-radius: 20%;
     border-block-end: 10px solid black;
+    background-color: white;
 }
 
 #select button:active {
@@ -144,15 +155,15 @@ footer h2 a:hover {
     justify-content: center;
     align-items: center;
     border-radius: 10%;
-    background-color: dimgrey;
+    background-color: grey;
     color: white;
     font-size: xx-large;
 }
 
 #replayButton {
+    font-family: "comfortaa", sans-serif;
     font-size: large;
-    border-inline-end: 5px solid black;
-    border-block-end: 5px solid black;
+    border-radius: 5rem;
 }
 
 #replayButton:active {
