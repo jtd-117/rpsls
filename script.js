@@ -157,7 +157,7 @@ function determineOutcome(humanMove, computerMove) {
             (computerMove === moves.Lizard)) {
             if (computerMove === moves.Scissor) {
                 reasonDiv.textContent = 
-                    `${computerMove} covers ${humanMove}`;
+                    `${computerMove} cuts ${humanMove}`;
             } else {
                 reasonDiv.textContent = 
                     `${computerMove} eats ${humanMove}`;
@@ -172,7 +172,7 @@ function determineOutcome(humanMove, computerMove) {
             (computerMove === moves.Lizard)) {
             if (computerMove === moves.Paper) {
                 reasonDiv.textContent = 
-                    `${humanMove} eats ${computerMove}`;
+                    `${humanMove} cuts ${computerMove}`;
             } else {
                 reasonDiv.textContent = 
                     `${humanMove} decapitates ${computerMove}`;
@@ -214,7 +214,7 @@ function determineOutcome(humanMove, computerMove) {
                     `${computerMove} decapitates ${humanMove}`;
             } else {
                 reasonDiv.textContent = 
-                    `${computerMove} smashes ${humanMove}`;
+                    `${computerMove} crushes ${humanMove}`;
             }
             return gameResult.Lose;
         }
