@@ -1,10 +1,10 @@
 /**
- * @file            Implements the logic for the 'Rock, Paper, Scissor, 
- *                  Lizard, Spock' game.
- * @author          Jude Thaddeau Data
- * @link            https://github.com/jtd-117
- */
-/* -------------------------------------------------------------------------- */
+ * @file        script.js
+ * @description Implements the logic for the 'Rock, Paper, Scissor, 
+ *              Lizard, Spock' game.
+ * @author      Jude Thaddeau Data
+ * @link        GitHub: https://github.com/jtd-117
+* --------------------------------------------------------------------------- */
 /**
  * @description An ENUM for the moves the human & computer can play.
  */
