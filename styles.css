@@ -5,8 +5,6 @@
     src: url("Comfortaa/Comfortaa-VariableFont_wght.ttf");
 }
 
-/* -------------------------------------------------------------------------- */
-
 /* Default Styles */
 
 html, body {
@@ -37,8 +35,6 @@ footer {
     flex-shrink: 1;
 }
 
-/* -------------------------------------------------------------------------- */
-
 /* Header & Title */
 
 header h1 {
@@ -46,8 +42,6 @@ header h1 {
     margin: 0;
     padding: 20px;
 }
-
-/* -------------------------------------------------------------------------- */
 
 /* Human & Computer Scoreboard */
 
@@ -80,8 +74,6 @@ header h1 {
     align-items: center;
 }
 
-/* -------------------------------------------------------------------------- */
-
 /* Round Outcome */
 
 #outcome {
@@ -101,8 +93,6 @@ header h1 {
     font-size: x-large;
 }
 
-/* -------------------------------------------------------------------------- */
-
 /* Move Selection */
 
 #select button {
@@ -121,8 +111,6 @@ header h1 {
     background-color: dimgray;
 }
 
-/* -------------------------------------------------------------------------- */
-
 /* Footer & Acknowledgements */
 
 footer h2 {
@@ -139,8 +127,6 @@ footer h2 a {
 footer h2 a:hover {
     text-decoration: underline;
 }
-
-/* -------------------------------------------------------------------------- */
 
 /* Replay Prompt */
 
@@ -170,8 +156,6 @@ footer h2 a:hover {
     border-inline-end: 0;
     border-block-end: 0;
 }
-
-/* -------------------------------------------------------------------------- */
 
 /* Media Queries */
 
